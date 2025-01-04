@@ -251,7 +251,7 @@ DEPENDENCIES
   error_highlight (>= 0.4.0)
   jwt
   mailgun-ruby
-  mysql2 (~> 0.5.3)
+  mysql2
   puma (>= 5.0)
   rails (~> 7.1.4, >= 7.1.4.1)
   rotp
