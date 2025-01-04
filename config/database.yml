@@ -1,26 +1,47 @@
+# default: &default
+#   adapter: mysql2
+#   # encoding: utf8
+#   # pool: 5
+#   # # host: 127.0.0.1
+#   # socket: /tmp/mysqld.sock
+#   username: root
+#   password: root
+#   #socket: /var/run/mysqld/mysqld.sock
+
+# development:
+#   primary:
+#     <<: *default
+#     database: todo_list_production
+
+# test:
+#   <<: *default
+#   database: todo_list_production
+#   username: root
+#   password: root
+
+# production:
+#   <<: *default
+#   database: todo_list_production
+#   username: root
+#   password: root
+
 default: &default
   adapter: mysql2
-  # encoding: utf8
-  # pool: 5
-  # # host: 127.0.0.1
-  # socket: /tmp/mysqld.sock
+  encoding: utf8
+  pool: 5
+  host: localhost
   username: root
   password: root
-  #socket: /var/run/mysqld/mysqld.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
-  primary:
-    <<: *default
-    database: todo_list_production
+  <<: *default
+  database: todo_list_development
 
 test:
   <<: *default
-  database: todo_list_production
-  username: root
-  password: root
+  database: todo_list_test
 
 production:
   <<: *default
   database: todo_list_production
-  username: root
-  password: root
