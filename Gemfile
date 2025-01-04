@@ -10,11 +10,13 @@ gem "rails", "~> 7.1.4", ">= 7.1.4.1"
 
 gem 'mysql2', '~> 0.5.3'
 
+gem 'rotp'
+
 # Gemfile
 gem 'devise'
 
-
-
+gem 'mailgun-ruby'
+gem 'jwt'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"

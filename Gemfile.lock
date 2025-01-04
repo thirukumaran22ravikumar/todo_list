@@ -98,17 +98,23 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    domain_name (0.6.20240107)
     drb (2.2.1)
     error_highlight (0.7.0)
     erubi (1.13.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    http-accept (1.7.0)
+    http-cookie (1.0.8)
+      domain_name (~> 0.5)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
     irb (1.14.3)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    jwt (2.10.1)
+      base64
     logger (1.6.4)
     loofah (2.24.0)
       crass (~> 1.0.2)
@@ -118,7 +124,13 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mailgun-ruby (1.2.16)
+      rest-client (>= 2.0.2)
     marcel (1.0.4)
+    mime-types (3.6.0)
+      logger
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2024.1203)
     mini_mime (1.1.5)
     minitest (5.25.4)
     msgpack (1.7.5)
@@ -133,6 +145,7 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
+    netrc (0.11.0)
     nio4r (2.7.4)
     nokogiri (1.18.1-aarch64-linux-gnu)
       racc (~> 1.4)
@@ -201,6 +214,12 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
+    rotp (6.3.0)
     securerandom (0.4.1)
     stringio (3.1.2)
     thor (1.3.2)
@@ -230,9 +249,12 @@ DEPENDENCIES
   debug
   devise
   error_highlight (>= 0.4.0)
+  jwt
+  mailgun-ruby
   mysql2 (~> 0.5.3)
   puma (>= 5.0)
   rails (~> 7.1.4, >= 7.1.4.1)
+  rotp
   tzinfo-data
 
 RUBY VERSION
