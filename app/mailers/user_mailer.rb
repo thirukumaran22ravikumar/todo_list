@@ -38,4 +38,12 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Otp your account',body: "your OTP  - #{otp}")
     end
 
+    def reminder_task_email(user,task)
+      mail(to: user.email, subject: "New task assigned",body: "task Details :-\n\ntask name: #{task.title}\nDue date : #{task.due_date}")
+    end
+
+    def task_reminder(task,user)
+      mail(to: user.email, subject: "Reminder for task completion",body: "task Details :-\n\ntask name: #{task.title}\nDue date : #{task.due_date}")
+    end
+
 end

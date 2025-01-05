@@ -37,8 +37,11 @@ class TasksController < ApplicationController
       
         @task = @category.tasks.new(task_params)
         @task.assignee = User.find_by(id: params[:assignee_id]) if params[:assignee_id]
-      
+        p "-------------"
+        p @task.assignee
         if @task.save
+          UserMailer.reminder_task_email(@task.assignee,@task).deliver_now
+          TaskReminderJob.set(wait_until: @task.remind_before_at).perform_later(@task.id)
           render json: @task, status: :created
         else
           render json: @task.errors, status: :unprocessable_entity
