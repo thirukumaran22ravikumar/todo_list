@@ -7,22 +7,47 @@ class TasksController < ApplicationController
     before_action :authorize_task_access, only: [:show, :update, :destroy]
   
     # GET /workspaces/:workspace_id/tasks
+    # def index
+    #   @tasks = @category ? @category.tasks : @workspace.tasks_through_categories
+    #   # Filter by category if `category_id` is provided
+    #   if params[:category_id].present?
+    #     @tasks = @tasks.where(category_id: params[:category_id])
+    #   end
+    #   # Sort by priority, due_date, or other fields if `sort_by` is provided
+    #   if params[:sort_by].present?
+    #     @tasks = @tasks.order(params[:sort_by])
+    #   end
+    #   render json: @tasks
+    # end
+
     def index
+      # Base query for tasks
       @tasks = @category ? @category.tasks : @workspace.tasks_through_categories
-  
       # Filter by category if `category_id` is provided
-      if params[:category_id].present?
-        @tasks = @tasks.where(category_id: params[:category_id])
+      @tasks = @tasks.where(category_id: params[:category_id]) if params[:category_id].present?
+      # Add search functionality
+      if params[:search].present?
+        search_query = params[:search]
+        @tasks = @tasks.where("title LIKE :query OR description LIKE :query", query: "%#{search_query}%")
       end
-  
       # Sort by priority, due_date, or other fields if `sort_by` is provided
       if params[:sort_by].present?
-        @tasks = @tasks.order(params[:sort_by])
+        sort_column = params[:sort_by]
+        sort_direction = params[:direction] == "desc" ? "desc" : "asc"
+        @tasks = @tasks.order("#{sort_column} #{sort_direction}")
       end
-  
-      render json: @tasks
+      # Pagination: Use `page` and `per_page` parameters
+      @tasks = @tasks.page(params[:page]).per(params[:per_page] || 10)
+      render json: {
+        tasks: @tasks,
+        meta: {
+          current_page: @tasks.current_page,
+          total_pages: @tasks.total_pages,
+          total_tasks: @tasks.total_count
+        }
+      }
     end
-  
+
     # GET /workspaces/:workspace_id/tasks/:id
     def show
       render json: @task

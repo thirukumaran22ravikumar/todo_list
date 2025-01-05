@@ -17,7 +17,7 @@ gem 'devise'
 
 gem 'mailgun-ruby'
 gem 'jwt'
-
+gem 'kaminari'
 gem 'sidekiq'
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"

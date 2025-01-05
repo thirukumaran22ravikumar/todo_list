@@ -115,6 +115,18 @@ GEM
       reline (>= 0.4.2)
     jwt (2.10.1)
       base64
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     logger (1.6.4)
     loofah (2.24.0)
       crass (~> 1.0.2)
@@ -209,8 +221,6 @@ GEM
     rake (13.2.1)
     rdoc (6.10.0)
       psych (>= 4.0.0)
-    redis (5.3.0)
-      redis-client (>= 0.22.0)
     redis-client (0.23.0)
       connection_pool
     reline (0.6.0)
@@ -259,11 +269,11 @@ DEPENDENCIES
   devise
   error_highlight (>= 0.4.0)
   jwt
+  kaminari
   mailgun-ruby
   mysql2
   puma (>= 5.0)
   rails (~> 7.1.4, >= 7.1.4.1)
-  redis
   rotp
   sidekiq
   tzinfo-data
