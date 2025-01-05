@@ -6,6 +6,7 @@ class ApplicationController < ActionController::API
   
     def authenticate_user!
       token = request.headers['Authorization']&.split(' ')&.last
+      
       decoded_token = JsonWebToken.decode(token)
       p decoded_token
       p "000000000000"
